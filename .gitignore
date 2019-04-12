@@ -1,0 +1,7 @@
+inst/doc
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+Read-and-delete-me
