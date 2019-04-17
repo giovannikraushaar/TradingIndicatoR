@@ -1,7 +1,7 @@
 Package: TradingIndicatoR
 Type: Package
 Title: Technical trading with TradingIndicatoR
-Version: 0.1
+Version: 0.2
 Date: 2019-04-12
 Author: Giovanni Kraushaar, Paolo Montemurro, Luca Sanfilippo
 Maintainer: Giovanni Kraushaar <krausg@usi.ch>
@@ -14,3 +14,5 @@ Suggests:
 VignetteBuilder: knitr
 URL: http://github.com/giovannikraushaar/TradingIndicatoR
 BugReports: http://github.com/giovannikraushaar/TradingIndicatoR/issues
+RoxygenNote: 6.1.1.9000
+Encoding: UTF-8

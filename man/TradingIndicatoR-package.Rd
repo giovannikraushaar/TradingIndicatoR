@@ -23,13 +23,23 @@ Maintainer: \packageMaintainer{TradingIndicatoR}
 \references{
 ~~ Literature or other references for background information ~~
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
-~~ documentation directory ~~
-\keyword{ trading, finance, tchnical trading, trading analysis }
+
+\keyword{ 
+  trading, 
+  finance, 
+  tchnical, 
+  analysis,
+  indicator,
+  financial,
+  markets
+  }
+  
 \seealso{
 ~~ Optional links to other man pages, e.g. ~~
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
+
 \examples{
-~~ simple examples of the most important functions ~~
+p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
+MA(p, method='sma', period = c(10,2))
 }
