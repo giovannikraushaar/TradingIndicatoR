@@ -2,22 +2,74 @@
 
 #' Moving Average
 #' 
-#' @param price A vector of past prices.
-#' @param period Integer or vector of integers. Number of datapoints over 
+#' Computes multiple flavors of the moving average.
+#' 
+#' @param price A vector of past prices or an xts object.
+#' @param period Integer or vector/list of integers. Number of datapoints over
 #' which calculate the average.
 #' @param method One of \code{c('SMA', 'EMA', 'WMA')}, for simple-, 
-#' exponential-, or weighted- moving average.
-#' 
+#' exponential-, or weighted- moving average respectively.
+#' Shortcurts \code{'s'}, \code{'e'}
+#' or \code{'w'} work as well.
+#' @param weight The vector of weights to assign to the weighted moving 
+#' average. If \code{NULL}, default is Linearly Weighted Moving Average 
+#' weights.
+#' @param k Weighting multiplier for the EMA. If \code{NULL}, default is
+#' \code{2/(n+1)} where \code{n} is the number of prices over which the EMA
+#' is computed. 
+#' @return A vector or an xts object, accordingly to the input, of the same
+#' length of the input.
 #' @export
 #' @author Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
+#' @references Murphy John J.,
+#' \emph{Technical Analysis of the Financial Markets},
+#' New York Institute of Finance, 1999.
+#' @details 
+#' The weighted moving average method (WMA) is a bit trickier to handle because
+#' it requires an input (weight) that is functional of the value an other 
+#' (period). If no weights are provided, then they are automatically assigned 
+#' linearly, \emph{e.g.} \code{1/55, 2/55, ..., 10/55} with 10 periods. 
+#' If \code{period} has more than 1 value, then user \code{weight} is ignored 
+#' and \emph{Linearly Weighted Moving Average} (\code{LWMA}) is computed.
+#' For EMA the parameter \code{period} is the time span over which calculate 
+#' the initial point average. 
 #' @examples 
 #' # prices vector
 #' p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
 #'  
 #' MA(p, method='sma', period = c(10,2))
-MA <- function(price, period, method = 'SMA'){
+#' 
+MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
   
-  if (method=='SMA' | method=='sma'){
-    return( SMA(price=price, period=period) )
+  # Data input checks and arrangements
+  if ( !is.numeric_integer(period) ){
+    stop('Vector period can contain only integers')
   }
+  
+  if ( !all(unlist(period)>=1) ){
+    stop('Vector period can contain only strictly positive integers')
+  }
+  
+  
+  # Applying methods
+  
+  if ( method %in% c('SMA','sma','s') ){
+    x <-  SMA(price=price, period=period)
+  }
+  
+  if ( method %in% c('WMA','wma','w') ){
+    x <- WMA(price=price, period=period, w=weight)
+  }
+  
+  if ( method %in% c('EMA','ema','e') ){
+    x <- EMA(price=price, period=period, k=k)
+  }
+  
+  
+  # Make xts compliant
+  if (xts::is.xts(price)){
+    x <- xts::xts(x, order.by = index(price))
+  }
+  
+  return(x)
 }
