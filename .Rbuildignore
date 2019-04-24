@@ -5,3 +5,4 @@
 ^resources$
 ^.Rhistory$
 ^.gitignore$
+^data/TWTR\.csv$

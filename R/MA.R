@@ -36,7 +36,7 @@
 #' @examples 
 #' # prices vector
 #' p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
-#'  
+#'
 #' MA(p, method='sma', period = c(10,2))
 #' 
 MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
