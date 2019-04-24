@@ -68,7 +68,7 @@ MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
   
   # Make xts compliant
   if (xts::is.xts(price)){
-    x <- xts::xts(x, order.by = index(price))
+    x <- xts::xts(x, order.by = zoo::index(price))
   }
   
   return(x)
