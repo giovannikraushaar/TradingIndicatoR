@@ -39,13 +39,13 @@ it requires an input (weight) that is functional of the value an other
 linearly, \emph{e.g.} \code{1/55, 2/55, ..., 10/55} with 10 periods. 
 If \code{period} has more than 1 value, then user \code{weight} is ignored 
 and \emph{Linearly Weighted Moving Average} (\code{LWMA}) is computed.
-For EMA the parameter \code{period} is the over which calculate the initial
-point average.
+For EMA the parameter \code{period} is the time span over which calculate 
+the initial point average.
 }
 \examples{
 # prices vector
 p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
- 
+
 MA(p, method='sma', period = c(10,2))
 
 }
