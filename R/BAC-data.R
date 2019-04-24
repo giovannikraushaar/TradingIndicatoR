@@ -13,7 +13,7 @@
 #'
 #' @format An object of class \code{"xts"}.
 #' 
-#' @importFrom xts xts as.xts
+#' @importFrom xts xts
 #' 
 #' @keywords datasets, BAC, Bank of America
 #'

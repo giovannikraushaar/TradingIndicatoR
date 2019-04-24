@@ -1,7 +1,7 @@
 Package: TradingIndicatoR
 Type: Package
 Title: Technical trading with TradingIndicatoR
-Version: 0.2.1
+Version: 0.3
 Date: 2019-04-12
 Author: Giovanni Kraushaar, Paolo Montemurro, Luca Sanfilippo
 Maintainer: Giovanni Kraushaar <giovanni.kraushaarg@usi.ch>
@@ -10,7 +10,8 @@ Depends:
     R (>= 3.1.0)
 License: GPL-3
 LazyData: true
-Import: 
+Imports:
+    zoo,
     xts
 Suggests: 
     knitr,

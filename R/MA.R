@@ -19,7 +19,6 @@
 #' is computed. 
 #' @return A vector or an xts object, accordingly to the input, of the same
 #' length of the input.
-#' @export
 #' @author Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
 #' @references Murphy John J.,
 #' \emph{Technical Analysis of the Financial Markets},
@@ -38,6 +37,10 @@
 #' p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
 #'
 #' MA(p, method='sma', period = c(10,2))
+#' 
+#' @importFrom zoo index
+#' @importFrom xts xts is.xts
+#' @export
 #' 
 MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
   
