@@ -14,7 +14,9 @@ Import:
     xts
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    timeSeries,
+    tseries
 VignetteBuilder: knitr
 URL: http://github.com/giovannikraushaar/TradingIndicatoR
 BugReports: http://github.com/giovannikraushaar/TradingIndicatoR/issues

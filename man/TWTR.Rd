@@ -3,7 +3,7 @@
 \docType{data}
 \name{TWTR}
 \alias{TWTR}
-\title{Twitter Stock Prices}
+\title{Twitter Stock Prices Data}
 \format{An object of class \code{"data.frame"}.}
 \source{
 \href{https://finance.yahoo.com/quote/TWTR/history?period1=1524528000&period2=1556064000&interval=1d&filter=history&frequency=1d}{Yahoo Finance}

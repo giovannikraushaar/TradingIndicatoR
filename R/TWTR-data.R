@@ -1,6 +1,6 @@
 # Giovanni Kraushaar, 2019-04-24
 #
-#' Twitter Stock Prices
+#' Twitter Stock Prices Data
 #' 
 #' Historical data on daily Twitter, Inc. (TWTR) stock prices between 
 #' 2018-04-24 and 2019-04-23 in USD. Retrieved from Yahoo Finance on 
