@@ -13,7 +13,9 @@
 The DESCRIPTION file:
 \packageDESCRIPTION{TradingIndicatoR}
 \packageIndices{TradingIndicatoR}
-~~ An overview of how to use the package, including the most important functions ~~
+
+# Compute Exponential Moving Average of Bank of America quotes
+MA( BAC$Close, 50, method = 'EMA' )
 }
 \author{
 \packageAuthor{TradingIndicatoR}
@@ -21,7 +23,7 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{TradingIndicatoR}
 }
 \references{
-~~ Literature or other references for background information ~~
+Murphy John J.,\emph{Technical Analysis of the Financial Markets}, New York Institute of Finance, 1999.
 }
 
 \keyword{ 
@@ -35,8 +37,7 @@ Maintainer: \packageMaintainer{TradingIndicatoR}
   }
   
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+Recommended class for time series: \code{\link[xts:xts-package]{xts}}
 }
 
 \examples{
