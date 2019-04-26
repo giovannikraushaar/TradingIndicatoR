@@ -30,6 +30,14 @@ WMA <- function( price, period, w ){
     stop('Weights must sum up to 1.')
   }
   
+  if( length(price) < period ){
+    stop( paste0(
+      'Cannot compute the require moving average with so few datapoints \n',
+      'datapoints:\t', length(price), '\n',
+      'period length: \t', period
+    ))
+  }
+  
   
   # Computation
   

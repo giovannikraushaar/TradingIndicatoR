@@ -1,6 +1,6 @@
-\name{TradingIndicatoR}
+\name{TradingIndicatoR-package}
 \alias{TIR}
-\alias{TradingIndicatoR}
+\alias{TradingIndicatoR-package}
 \docType{package}
 \title{
 \packageTitle{TradingIndicatoR}

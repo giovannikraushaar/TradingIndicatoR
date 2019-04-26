@@ -17,8 +17,9 @@
 #' @param k Weighting multiplier for the EMA. If \code{NULL}, default is
 #' \code{2/(n+1)} where \code{n} is the number of prices over which the EMA
 #' is computed. 
-#' @return A vector or an xts object, accordingly to the input, of the same
-#' length of the input.
+#' @return A vector or an [xts][xts::xts-package] object, 
+#' accordingly to the input, of the same length of the input. 
+#' The first period-1 values are NA.
 #' @author Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
 #' @references Murphy John J.,
 #' \emph{Technical Analysis of the Financial Markets},
@@ -47,6 +48,8 @@
 #' 
 MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
   
+  # TODO vecorize method if other inputs are atomic
+  
   # Data input checks and arrangements
   if ( !is.numeric_integer(period) ){
     stop('Vector period can contain only integers')
@@ -55,7 +58,6 @@ MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
   if ( !all(unlist(period)>=1) ){
     stop('Vector period can contain only strictly positive integers')
   }
-  
   
   # Applying methods
   
@@ -75,6 +77,7 @@ MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
   # Make xts compliant
   if (xts::is.xts(price)){
     x <- xts::xts(x, order.by = zoo::index(price))
+    colnames(x) <- method
   }
   
   return(x)

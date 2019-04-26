@@ -11,13 +11,16 @@ SMA <- function(price, period){
     return(x)
   }
   
+  if( length(price) < period ){
+    stop( paste0(
+      'Cannot compute the require moving average with so few datapoints \n',
+      'datapoints:\t', length(price), '\n',
+      'period length: \t', period
+    ))
+  }
+  
   n <- length(price)
   x <- rep(NA, period-1)
-  
-  # for (k in period:n){
-  #   x[k] <- mean(price[(k-period+1):k])
-  # }
-
   y <- sapply( (period:n), function(k) mean(price[(k-period+1):k]))
   z <- c(x,y)
   

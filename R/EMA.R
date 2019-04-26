@@ -7,6 +7,7 @@
 
 EMA <- function( price, period, k ){
   
+  # Alternative 'period-dependent' smoothing
   # # setting k (smoothing factor)
   # if (is.null(alpha)){
   #   k <- 2 / ((1:(length(price)-period))+1)
@@ -29,6 +30,15 @@ EMA <- function( price, period, k ){
     x <- lapply(k, function(y) EMA(price=price, period = period, k = y))
     names(x) <- paste0('K',k)
     return(x)
+  }
+  
+  # Data check
+  if( length(price) < period ){
+    stop( paste0(
+      'Cannot compute the require moving average with so few datapoints \n',
+      'datapoints:\t', length(price), '\n',
+      'period length: \t', period
+      ))
   }
   
   # Initialization
