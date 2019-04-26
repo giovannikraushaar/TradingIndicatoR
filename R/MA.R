@@ -33,10 +33,13 @@
 #' For EMA the parameter \code{period} is the time span over which calculate 
 #' the initial point average. 
 #' @examples 
+#' 
 #' # prices vector
 #' p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
-#'
 #' MA(p, method='sma', period = c(10,2))
+#' 
+#' # Compute Exponential Moving Average of Bank of America quotes
+#' MA( BAC$Close, 50, method = 'EMA' )
 #' 
 #' @importFrom zoo index
 #' @importFrom xts xts is.xts
