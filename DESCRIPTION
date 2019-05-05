@@ -1,7 +1,7 @@
 Package: TradingIndicatoR
 Type: Package
 Title: Technical trading with TradingIndicatoR
-Version: 0.3.2
+Version: 0.4
 Date: 2019-04-12
 Author: Giovanni Kraushaar, Paolo Montemurro, Luca Sanfilippo
 Maintainer: Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
