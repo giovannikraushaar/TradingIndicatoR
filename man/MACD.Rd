@@ -44,6 +44,9 @@ Murphy John J.,
 \emph{Technical Analysis of the Financial Markets},
 New York Institute of Finance, 1999.
 }
+\seealso{
+Moving average: \code{\link{MA}}.
+}
 \author{
 Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
 }

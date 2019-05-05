@@ -13,7 +13,7 @@ SMA <- function(price, period){
   
   if( length(price) < period ){
     stop( paste0(
-      'Cannot compute the require moving average with so few datapoints \n',
+      'Cannot compute the required moving average with so few datapoints \n',
       'datapoints:\t', length(price), '\n',
       'period length: \t', period
     ))

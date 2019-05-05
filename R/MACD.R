@@ -20,6 +20,7 @@
 #' of the same length of the input. If also the 
 #' signal line is computed, a list with two elements: \code{MACD} and 
 #' \code{signal}, or a multiple timeseries if it is an xts.
+#' @seealso Moving average: \code{\link{MA}}.
 #' @author Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
 #' @references Murphy John J.,
 #' \emph{Technical Analysis of the Financial Markets},

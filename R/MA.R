@@ -34,8 +34,8 @@
 #' For EMA the parameter \code{period} is the time span over which calculate 
 #' the initial point average.
 #' 
-# #' @importFrom zoo index
-# #' @importFrom xts xts is.xts
+#' @importFrom zoo index
+#' @importFrom xts xts is.xts
 #' @export
 #' @examples 
 #' 
