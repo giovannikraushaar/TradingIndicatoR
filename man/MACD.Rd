@@ -19,12 +19,13 @@ period EMA and the length of the long period EMA.}
 \item{slp}{Signal line period, the length of the period of the EMA used as
 signal line.}
 
-\item{k}{Weighting multiplier for the underlying 
-[EMA][TradingIndicatoR::MA], defualt if \code{NULL}.}
+\item{k}{Weighting multiplier for the underlying Exponential
+\code{\link{MA}}, defualt if \code{NULL}.}
 }
 \value{
-A [vector][base:vector] or an [xts][xts::xts-package] object, 
-accordingly to the input, of the same length of the input. If also the 
+A \code{\link[base:vector]{vector}} or an 
+\code{\link[xts:xts-package]{xts}} object, accordingly to the input, 
+of the same length of the input. If also the 
 signal line is computed, a list with two elements: \code{MACD} and 
 \code{signal}, or a multiple timeseries if it is an xts.
 }

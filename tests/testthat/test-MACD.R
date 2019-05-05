@@ -1,3 +1,5 @@
+# Giovanni Kraushaar, 2019-04-26
+
 test_that("MACD vector input", {
   x  <- TWTR$Close
   m  <- MACD(x)

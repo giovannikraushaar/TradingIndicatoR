@@ -1,3 +1,5 @@
+# Giovanni Kraushaar, 2019-04-23
+
 test_that("MA works with simple input", {
   p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
   expect_equal( MA(p,10)[15], 27.8 )
@@ -43,6 +45,14 @@ test_that("xts input", {
 })
 
 test_that("quantmod output as input", {
+  
   expect_length( MA(BAC$Close,10,'WMA'), nrow(BAC) ) 
   expect_length( MA(BAC[,4],10,'WMA'), nrow(BAC) ) 
 })
+
+test_that("bug 1, multiperiod xts", {
+  x <- MA(BAC$Close, c(50,100,200))
+  expect_true( is.list(x) )
+})
+  
+  

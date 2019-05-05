@@ -1,5 +1,4 @@
 \name{TradingIndicatoR-package}
-\alias{TIR}
 \alias{TradingIndicatoR-package}
 \docType{package}
 \title{

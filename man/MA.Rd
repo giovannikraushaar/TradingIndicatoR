@@ -26,7 +26,7 @@ weights.}
 is computed.}
 }
 \value{
-A vector or an [xts][xts::xts-package] object, 
+A vector or an \code{\link[xts:xts-package]{xts}} object, 
 accordingly to the input, of the same length of the input. 
 The first period-1 values are NA.
 }
@@ -47,7 +47,7 @@ the initial point average.
 
 # prices vector
 p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
-MA(p, method='sma', period = c(10,2))
+MA(p, method='s', period = c(10,2))
 
 # Compute Exponential Moving Average of Bank of America quotes
 MA( BAC$Close, 50, method = 'EMA' )

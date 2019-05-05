@@ -17,7 +17,7 @@
 #' @param k Weighting multiplier for the EMA. If \code{NULL}, default is
 #' \code{2/(n+1)} where \code{n} is the number of prices over which the EMA
 #' is computed. 
-#' @return A vector or an [xts][xts::xts-package] object, 
+#' @return A vector or an \code{\link[xts:xts-package]{xts}} object, 
 #' accordingly to the input, of the same length of the input. 
 #' The first period-1 values are NA.
 #' @author Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
@@ -32,19 +32,19 @@
 #' If \code{period} has more than 1 value, then user \code{weight} is ignored 
 #' and \emph{Linearly Weighted Moving Average} (\code{LWMA}) is computed.
 #' For EMA the parameter \code{period} is the time span over which calculate 
-#' the initial point average. 
+#' the initial point average.
+#' 
+# #' @importFrom zoo index
+# #' @importFrom xts xts is.xts
+#' @export
 #' @examples 
 #' 
 #' # prices vector
 #' p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
-#' MA(p, method='sma', period = c(10,2))
+#' MA(p, method='s', period = c(10,2))
 #' 
 #' # Compute Exponential Moving Average of Bank of America quotes
 #' MA( BAC$Close, 50, method = 'EMA' )
-#' 
-#' @importFrom zoo index
-#' @importFrom xts xts is.xts
-#' @export
 #' 
 MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
   
@@ -55,7 +55,7 @@ MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
     stop('Vector period can contain only integers')
   }
   
-  if ( !all(unlist(period)>=1) ){
+  if ( !all(unlist(period)>= 1) ){
     stop('Vector period can contain only strictly positive integers')
   }
   
@@ -76,8 +76,14 @@ MA <- function(price, period, method = 'SMA', weight = NULL, k = NULL){
   
   # Make xts compliant
   if (xts::is.xts(price)){
-    x <- xts::xts(x, order.by = zoo::index(price))
-    colnames(x) <- method
+    if (is.list(x)) {
+      n <- names(x)
+      x <- lapply(x, function(s) xts::xts(s, order.by = zoo::index(price)) )
+      names(x) <- n
+    } else {
+      x <- xts::xts(x, order.by = zoo::index(price))
+      colnames(x) <- method
+    }
   }
   
   return(x)

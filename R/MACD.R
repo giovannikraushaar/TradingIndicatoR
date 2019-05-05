@@ -13,18 +13,20 @@
 #' \code{slp} is computed.
 #' @param slp Signal line period, the length of the period of the EMA used as
 #' signal line.
-#' @param k Weighting multiplier for the underlying 
-#' [EMA][TradingIndicatoR::MA], defualt if \code{NULL}.
-#' @return A [vector][base:vector] or an [xts][xts::xts-package] object, 
-#' accordingly to the input, of the same length of the input. If also the 
+#' @param k Weighting multiplier for the underlying Exponential
+#' \code{\link{MA}}, defualt if \code{NULL}.
+#' @return A \code{\link[base:vector]{vector}} or an 
+#' \code{\link[xts:xts-package]{xts}} object, accordingly to the input, 
+#' of the same length of the input. If also the 
 #' signal line is computed, a list with two elements: \code{MACD} and 
 #' \code{signal}, or a multiple timeseries if it is an xts.
 #' @author Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
 #' @references Murphy John J.,
 #' \emph{Technical Analysis of the Financial Markets},
 #' New York Institute of Finance, 1999.
-#' @importFrom xts xts is.xts merge.xts
+# #' @importFrom xts xts is.xts merge.xts
 #' @export
+#' 
 #' @examples 
 #' # Compute Exponential Moving Average of Bank of America quotes
 #' MACD( BAC$Close )
