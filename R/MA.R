@@ -15,8 +15,7 @@
 #' average. If \code{NULL}, default is Linearly Weighted Moving Average 
 #' weights.
 #' @param k Weighting multiplier for the EMA. If \code{NULL}, default is
-#' \code{2/(n+1)} where \code{n} is the number of prices over which the EMA
-#' is computed. 
+#' \code{2/(n+1)} where \code{n} is the length of the smoothing period. 
 #' @return A vector or an \code{\link[xts:xts-package]{xts}} object, 
 #' accordingly to the input, of the same length of the input. 
 #' The first period-1 values are NA.

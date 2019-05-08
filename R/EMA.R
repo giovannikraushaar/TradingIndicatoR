@@ -1,4 +1,5 @@
-# Giovanni Kraushaar, 2019-04-23
+# Giovanni Kraushaar and Paolo Montemurro, 2019-04-23
+
 
 # Exponential Moving Average
 
@@ -6,19 +7,7 @@
 # https://www.fmlabs.com/reference/default.htm?url=ExpMA.htm
 
 EMA <- function( price, period, k ){
-  
-  # Alternative 'period-dependent' smoothing
-  # # setting k (smoothing factor)
-  # if (is.null(alpha)){
-  #   k <- 2 / ((1:(length(price)-period))+1)
-  # } else if (is.function(alpha)){
-  #   k <- alpha( 1:(length(price)-period) )
-  # } else if ( is.numeric(alpha) ){
-  #   k <- rep( alpha, length(price)-period )
-  # } else {
-  #   stop('Invalid alpha')
-  # }
-  
+
   # Vectorization
   if (length(period) > 1){
     x <- lapply(period, function(y) EMA(price=price, period = y, k = k))
@@ -43,15 +32,14 @@ EMA <- function( price, period, k ){
   
   # Initialization
   n <- length(price)
-  if (is.null(k)) k <- 2 / (n-period+2)
+  if (is.null(k)) k <- 2 / (period+1)
   x <- rep(NA, n)
-  
   
   # Computation
   x[period] <- mean(price[1:period])
   
   for (t in (period+1):n){
-    x[t] <- k * price[t] + (1-k) * x[t-1]
+    x[t] <- k * (price[t] - x[t-1]) + x[t-1]
   }
   
   return(x)
