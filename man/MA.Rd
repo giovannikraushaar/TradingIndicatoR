@@ -4,24 +4,58 @@
 \alias{MA}
 \title{Moving Average}
 \usage{
-MA(price, period, method = "SMA")
+MA(price, period, method = "SMA", weight = NULL, k = NULL)
 }
 \arguments{
-\item{price}{A vector of past prices.}
+\item{price}{A vector of past prices or an xts object.}
 
-\item{period}{Integer or vector of integers. Number of datapoints over 
+\item{period}{Integer or vector/list of integers. Number of datapoints over
 which calculate the average.}
 
 \item{method}{One of \code{c('SMA', 'EMA', 'WMA')}, for simple-, 
-exponential-, or weighted- moving average.}
+exponential-, or weighted- moving average respectively.
+Shortcurts \code{'s'}, \code{'e'}
+or \code{'w'} work as well.}
+
+\item{weight}{The vector of weights to assign to the weighted moving 
+average. If \code{NULL}, default is Linearly Weighted Moving Average 
+weights.}
+
+\item{k}{Weighting multiplier for the EMA. If \code{NULL}, default is
+\code{2/(n+1)} where \code{n} is the length of the smoothing period.}
+}
+\value{
+A vector or an \code{\link[xts:xts-package]{xts}} object, 
+accordingly to the input, of the same length of the input. 
+The first period-1 values are NA.
 }
 \description{
-Moving Average
+Computes multiple flavors of the moving average.
+}
+\details{
+The weighted moving average method (WMA) is a bit trickier to handle because
+it requires an input (weight) that is functional of the value an other 
+(period). If no weights are provided, then they are automatically assigned 
+linearly, \emph{e.g.} \code{1/55, 2/55, ..., 10/55} with 10 periods. 
+If \code{period} has more than 1 value, then user \code{weight} is ignored 
+and \emph{Linearly Weighted Moving Average} (\code{LWMA}) is computed.
+For EMA the parameter \code{period} is the time span over which calculate 
+the initial point average.
 }
 \examples{
+
 # prices vector
-p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 ) 
-MA(p, method='sma', period = c(10,2))
+p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
+MA(p, method='s', period = c(10,2))
+
+# Compute Exponential Moving Average of Bank of America quotes
+MA( BAC$Close, 50, method = 'EMA' )
+
+}
+\references{
+Murphy John J.,
+\emph{Technical Analysis of the Financial Markets},
+New York Institute of Finance, 1999.
 }
 \author{
 Giovanni Kraushaar <giovanni.kraushaar@usi.ch>

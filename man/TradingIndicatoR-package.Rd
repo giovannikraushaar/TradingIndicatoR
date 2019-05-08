@@ -1,6 +1,5 @@
-\name{TradingIndicatoR}
-\alias{TIR}
-\alias{TradingIndicatoR}
+\name{TradingIndicatoR-package}
+\alias{TradingIndicatoR-package}
 \docType{package}
 \title{
 \packageTitle{TradingIndicatoR}
@@ -13,7 +12,6 @@
 The DESCRIPTION file:
 \packageDESCRIPTION{TradingIndicatoR}
 \packageIndices{TradingIndicatoR}
-~~ An overview of how to use the package, including the most important functions ~~
 }
 \author{
 \packageAuthor{TradingIndicatoR}
@@ -21,7 +19,7 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{TradingIndicatoR}
 }
 \references{
-~~ Literature or other references for background information ~~
+Murphy John J.,\emph{Technical Analysis of the Financial Markets}, New York Institute of Finance, 1999.
 }
 
 \keyword{ 
@@ -35,11 +33,10 @@ Maintainer: \packageMaintainer{TradingIndicatoR}
   }
   
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+Recommended class for time series: \code{\link[xts:xts-package]{xts}}
 }
 
 \examples{
-p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
-MA(p, method='sma', period = c(10,2))
+# Compute Exponential Moving Average of Bank of America quotes
+MA( BAC$Close, 50, method = 'EMA' )
 }

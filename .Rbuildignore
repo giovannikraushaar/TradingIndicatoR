@@ -1,7 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^LICENSE$
-^README.md$
-^resources$
 ^.Rhistory$
-^.gitignore$
+\.git
+\.gitignore
+\.orig$
+\.md$
+^LICENSE$
+^resources$
+^data/TWTR\.csv$
