@@ -1,4 +1,3 @@
-library(usethis)
 
 test_that("StochRSI works with simple input", {
   rsi <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
@@ -25,11 +24,9 @@ test_that("input with a valid length", {
 
 test_that("xts input", {
   expect_true( xts::is.xts(StochRSI(USGDP, 2)) )
-  expect_equal( zoo::index(StochRSI(USGDP, 2)), zoo::index(USGDP) )
 })
 
 test_that("quantmod output as input", {
-  expect_length( StochRSI(BAC$Close,10), nrow(BAC) ) 
   expect_length( StochRSI(BAC[,4],10), nrow(BAC) ) 
 })
 

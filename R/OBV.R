@@ -1,54 +1,44 @@
-# Luca Sanfilippo, 2019-04-24
+# Luca Sanfilippo and Giovanni Kraushaar, 2019-04-24
 
 #' On Balance Volume 
 #' 
 #' Compute the On Balance Volume indicator.    
 #' 
-#' @param closingPrice A vector of past closing prices or an xts object 
-#' @param volume A vector of past volumes or an xts object.
+#' @param closingPrice A vector or an xts vector of past closing prices.
+#' @param volume A vector or an xts vector of past volumes
 #' 
 #' @return A vector or an xts object, accordingly to the input, of the same 
 #' length of the input.
 #' 
 #' @export
+#' @importFrom xts xts is.xts
+#' @importFrom zoo coredata index
 #' @author Luca Sanfilippo <luca.sanfilippo@usi.ch>
-#' @references \textsc{Joe Granville, 1963}, \emph{New Key To Stock Market Profits}
+#' @references Joe Granville, \emph{New Key To Stock Market Profits}, 1963.
 #' @examples
-#' library(quantmod)
-#' getSymbols('AAPL',src = 'yahoo')
-#' closingPrice <- AAPL$AAPL.Close
-#' volume       <- AAPL$AAPL.Volume
-#' OBV(closingPrice,volume)
-#' plot(OBV(closingPrice,volume)[,1],type = 'l')
-
+#' 
+#' obv <- OBV(BAC$Close, BAC$Volume)
+#' plot( obv, type = 'l')
+#' 
 OBV <- function (closingPrice, volume) {
+  
   clsCP <- class(closingPrice)
   clsVM <- class (volume)
   
   # Data check
-  if (length(closingPrice) < length(volume)) {
+  if (length(closingPrice) != length(volume)) {
     stop(
       paste0(
-        'Cannot compute the require OBV with different length inputs \n',
-        'closing price length:\t',
+        'Input vectors are not compatible \n',
+        'closingPrice length:\t',
         length(closingPrice),
         '\n',
         'volume length: \t',
         length(volume)
       )
     )
-  } else if (length(closingPrice) > length(volume)) {
-    stop(
-      paste0(
-        'Cannot compute the require OBV with different length inputs \n',
-        'volume length:\t',
-        length(volume),
-        '\n',
-        'closing price length: \t',
-        length(closingPrice)
-      )
-    )
   }
+  
   
   # Code to verify the type of data: (vector, xts)
   if (clsCP == c('numeric') && clsVM == c('numeric')) {
@@ -57,29 +47,29 @@ OBV <- function (closingPrice, volume) {
     dimension <- length(closingPrice)
     coreP <- closingPrice
     coreV <- volume
-    
-  } else if (is.xts(closingPrice) && is.xts(volume)) {
+  } else if (xts::is.xts(closingPrice) && xts::is.xts(volume)) {
     ind <- TRUE
-    obv    <- xts(order.by = index(closingPrice))
+    obv    <- xts::xts(order.by = zoo::index(closingPrice))
     dimension <- length(closingPrice[, 1])
     coreP <- coredata(closingPrice[, 1])
     coreV <- coredata(volume[, 1])
   }
+  
   
   # Code to compute the OBV
   for (i in 2:dimension) {
     obv[1]  <- 0
     if (sum(coreP[i], -coreP[i - 1]) > 0) {
       obv[i] <- obv[i - 1] + coreV[i]
-    } else if (sum(coreP[i], -coreP[i - 1]) < 0) {
+    } else if (sum(coreP[i], - coreP[i - 1]) < 0) {
       obv[i] <- obv[i - 1] - coreV[i]
     } else{
       obv[i] <- obv[i - 1]
     }
   }
   
-  if (ind == 'T') {
-    obv <- xts(obv, order.by = index(closingPrice[,]))
+  if (ind) {
+    obv <- xts::xts(obv, order.by = index(closingPrice))
     obv[1] <- NA
   }else{
     obv[1] <- NA

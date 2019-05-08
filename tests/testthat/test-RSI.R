@@ -1,10 +1,4 @@
-library(usethis)
-
-test_that("RSI works with simple input", {
-  p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
-  expect_equal( RSI(p,11)[11], 70 )
-  expect_equal( RSI(p,10)[11], 70 )
-})
+# Luca Sanfilippo
 
 test_that("First n-1 values are NA", {
   p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )

@@ -11,6 +11,7 @@
 #' @param k integer, length of the smoothing factor
 #' 
 #' @return 
+#' 
 #' @export
 #' @importFrom zoo coredata index
 #' @importFrom xts xts is.xts
