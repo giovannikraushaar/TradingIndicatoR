@@ -2,32 +2,33 @@
 % Please edit documentation in R/RSI.R
 \name{RSI}
 \alias{RSI}
-\title{RSI}
+\title{Relative Strenght Index}
 \usage{
-RSI(returns, n = 14)
+RSI(closingPrice, period = 14)
 }
 \arguments{
-\item{returns}{vector of closing prices}
+\item{closingPrice}{A vector of past closing prices or an xts object or
+the column of a dataframe.}
 
-\item{n}{integer, length of each period of analysis}
+\item{period}{It is a value (in days: usually it is 14days)}
 }
 \value{
-a vector containing RSI value
+A vector or an xts object, accordingly to the input, of the same 
+length of the input.
 }
 \description{
-Compute the Relative Strength Index
+Compute the Relative Strenght Index indicator.
 }
 \examples{
 
 data(BAC)
-returns <- (BAC$Close / BAC$Open) - 1
-RSI(returns)
+RSI(BAC$Close)
 
 }
 \references{
-Welles Wilder, 
-\emph{New Concepts in Technical Trading Systems}, 1978
+Welles Wilder,
+\emph{New Concepts in Technical Trading Systems}, 1978.
 }
 \author{
-Paolo Montemurro <montep@usi.ch>
+Luca Sanfilippo <luca.sanfilippo@usi.ch>
 }

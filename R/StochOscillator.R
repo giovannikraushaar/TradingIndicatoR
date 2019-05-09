@@ -10,7 +10,8 @@
 #' @param n integer, length of each period of analysis
 #' @param k integer, length of the smoothing factor
 #' 
-#' @return 
+#' @return a vector or XTS containing the value of stochastic oscillator
+#' 
 #' @export
 #' @importFrom zoo coredata index
 #' @importFrom xts xts is.xts

@@ -1,63 +1,91 @@
-# Paolo Montemurro, 2019-04-15
+# Luca Sanfilippo, 2019-05-09
 
-#' RSI
+#' Relative Strenght Index 
 #' 
-#' Compute the Relative Strength Index
+#' Compute the Relative Strenght Index indicator.    
 #' 
-#' @param returns vector of closing prices
-#' @param n integer, length of each period of analysis
+#' @param closingPrice A vector of past closing prices or an xts object or
+#' the column of a dataframe.
+#' @param period It is a value (in days: usually it is 14days)
 #' 
-#' @return a vector containing RSI value
+#' @return A vector or an xts object, accordingly to the input, of the same 
+#' length of the input.
+#' 
 #' @export
-#' @importFrom zoo coredata index
-#' @importFrom xts xts is.xts
-#' @author Paolo Montemurro <montep@usi.ch>
-#' @references Welles Wilder, 
-#' \emph{New Concepts in Technical Trading Systems}, 1978
+#' @author Luca Sanfilippo <luca.sanfilippo@usi.ch>
+#' @references Welles Wilder,
+#' \emph{New Concepts in Technical Trading Systems}, 1978.
 #' @examples
 #' 
 #' data(BAC)
-#' returns <- (BAC$Close / BAC$Open) - 1
-#' RSI(returns)
+#' RSI(BAC$Close)
 #' 
-RSI <- function(returns, n=14){
+RSI <- function(closingPrice, period = 14) {
   
-  # Convert to numeric for easier calculations
-  wasXts  <- F
-  if(xts::is.xts(returns)){
-    idx     <- zoo::index(returns)
-    returns <- zoo::coredata(returns)
-    wasXts<- T
+  # Initialization of variables
+  u               <- c(0)
+  d               <- c(0)
+  BullishAverage  <- c()
+  BearishAverage  <- c()
+  RS              <- c()
+  rsi             <- c()
+  dimension       <- c()
+  
+  # Data check
+  if (length(closingPrice) < period) {
+    stop(
+      paste0(
+        'Cannot compute the require RSI with so few datapoints \n',
+        'datapoints:\t',
+        length(closingPrice),
+        '\n',
+        'period length: \t',
+        period
+      )
+    )
   }
   
-  rs             <- c()
-  averageGain    <- c()
-  averageLoss    <- c()
-  averageGain[n] <- mean(returns[1:n]>=0)
-  averageLoss[n] <- mean(returns[1:n]<0)
-  rs[n]          <- averageGain[n]/averageLoss[n]
-  
-  for(i in (n+1):length(returns)){
+  # Code to verify the type of data: (vector, xts)
+  if ((class(closingPrice) == c('numeric')) &&
+      (class(closingPrice) != c('xts', 'zoo'))) {
+    ind = F
+    dimension <- length(closingPrice)
+    coreCP <- closingPrice
     
-    if(returns[i]>0){currentGain <- returns[i]}else{currentGain <- 0}
-    if(returns[i]<0){currentLoss <- returns[i]}else{currentLoss <- 0}
-    
-    subReturns     <- returns[(i-n):i]
-    averageGain[i] <- mean(subReturns[subReturns>0])
-    averageLoss[i] <- abs(mean(subReturns[subReturns<0]))   
-    
-    rs[i] <- (
-      ( averageGain[i-1]*(n-1) + currentGain)/n ) / 
-      (( averageLoss[i-1]*(n-1) + currentLoss)/n )
+  } else if ((class(closingPrice) == c('xts', 'zoo')) &&
+             (class(closingPrice) != c('numeric'))) {
+    ind = T
+    dimension = length(closingPrice[, 1])
+    coreCP <- coredata(closingPrice[,])
   }
   
-  rsi <- 100 - 100/(1+ rs)
+  # Computation of the changes (= Close_t – Close_t-1)
+  for (i in 1:(dimension - 1)) {
+    if (sum(coreCP[i + 1], -coreCP[i]) > 0) {
+      u[i + 1] <- coreCP[i + 1] - coreCP[i]
+      d[i + 1] <- 0
+    } else if (sum(coreCP[i + 1], -coreCP[i]) < 0) {
+      u[i + 1] <- 0
+      d[i + 1] <- coreCP[i] - coreCP[i + 1]
+    } else if (sum(coreCP[i + 1], -coreCP[i]) == 0) {
+      u[i + 1] <- 0
+      d[i + 1] <- 0
+    }
+  }
+  # Computation of the Average gain and loss:
+  for (i in 1:(dimension + 1 - period)) {
+    BullishAverage[i]   <- mean(u[i:(i + period - 1)])
+    BearishAverage[i]   <- mean(d[i:(i + period - 1)])
+    RS[i]               <- BullishAverage[i] / BearishAverage[i]
+    rsi[i]              <- 100 - (100 / (1 + RS[i]))
+  }
   
-  # If input was XTS, reconvert to XTS.
-  if(wasXts==T){
-    rsi <- xts::xts(rsi, order.by = idx)
+  if (ind) {
+    rsi <-
+      xts::xts(c(rep(NA, period - 1), rsi), order.by = index(closingPrice))
+  } else{
+    rsi <- c(rep(NA, period - 1), rsi)
   }
   
   return(rsi)
 }
-

@@ -17,6 +17,9 @@ StochOscillator(close, high, low, n = 14, k = 3)
 
 \item{k}{integer, length of the smoothing factor}
 }
+\value{
+a vector or XTS containing the value of stochastic oscillator
+}
 \description{
 Compute stochastic oscillator
 }
