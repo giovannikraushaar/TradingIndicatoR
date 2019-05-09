@@ -4,19 +4,19 @@
 \alias{ATR}
 \title{Average True Range}
 \usage{
-ATR(high, low, close, n = 14)
+ATR(close, low, high, n = 14)
 }
 \arguments{
-\item{high}{vector of high prices}
+\item{close}{vector or xts, historical series of the close price for each interval}
 
-\item{low}{vector of low prices}
+\item{low}{vector or xts, historical series of the lowest prices for each interval}
 
-\item{close}{vector of closing prices}
+\item{high}{vector or xts, historical series of the highest prices for each interval}
 
 \item{n}{integer, length of each period of analysis}
 }
 \value{
-a vector containing the Average True Range values
+vector or xts, historical series of ATR value
 }
 \description{
 Compute the Average True Range Indicator
@@ -24,7 +24,7 @@ Compute the Average True Range Indicator
 \examples{
 
 data(BAC)
-ATR(BAC$High,BAC$Low,BAC$Close)
+ATR(BAC$Close,BAC$Low,BAC$High)
 
 }
 \references{

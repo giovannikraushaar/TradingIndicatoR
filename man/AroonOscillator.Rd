@@ -7,12 +7,12 @@
 AroonOscillator(price, n = 14)
 }
 \arguments{
-\item{price}{vector of prices}
+\item{price}{vector or xts, historical series of prices}
 
 \item{n}{integer, length of each period of analysis}
 }
 \value{
-A vector containing aroonOscillator values
+vector or xts, historical series of Aroon Oscillator value
 }
 \description{
 Compute the Aroon Oscillator Indicator

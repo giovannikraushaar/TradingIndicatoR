@@ -4,12 +4,12 @@
 #' 
 #' Compute the Arms Ease of Movement
 #' 
-#' @param high vector of high prices
-#' @param low vector of low prices
-#' @param volume vector of volumes
+#' @param low vector or xts, historical series of the lowest prices for each interval 
+#' @param high vector or xts, historical series of the highest prices for each interval 
+#' @param volume vector or xts, historical series of volume for each interval
 #' @param divisor integer that scales the result
 #' 
-#' @return A vector containing the EMV value
+#' @return vector or xts, historical series of EMV value
 #' 
 #' @export
 #' @importFrom zoo coredata index
@@ -19,12 +19,12 @@
 #' @examples 
 #' 
 #' data(TWTR)
-#' EMV(TWTR$High, TWTR$Low, TWTR$Volume)
+#' EMV(TWTR$Low, TWTR$High, TWTR$Volume)
 #' 
 #' data(BAC)
-#' EMV(BAC$High, BAC$Low, BAC$Volume)
+#' EMV(BAC$Low, BAC$High, BAC$Volume)
 #' 
-EMV  <- function(high, low, volume, divisor = 1e4){
+EMV  <- function(low, high, volume, divisor = 1e4){
   
   # Convert to numeric for easier calculations
   wasXts  <- F

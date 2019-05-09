@@ -4,7 +4,7 @@
 #' 
 #' Computes multiple flavors of the moving average.
 #' 
-#' @param price A vector of past prices or an xts object.
+#' @param price A vector of past prices or an equivalent xts object.
 #' @param period Integer or vector/list of integers. Number of datapoints over
 #' which calculate the average.
 #' @param method One of \code{c('SMA', 'EMA', 'WMA')}, for simple-, 

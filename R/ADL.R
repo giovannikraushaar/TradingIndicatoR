@@ -4,12 +4,12 @@
 #' 
 #' Compute the Accumulation/Distribution Line Indicator
 #' 
-#' @param close vector of closing prices
-#' @param low vector of low prices
-#' @param high vector of high prices
-#' @param volume vector of volumes
+#' @param close vector or xts, historical series of the close price for each interval
+#' @param low vector or xts, historical series of the lowest prices for each interval 
+#' @param high vector or xts, historical series of the highest prices for each interval 
+#' @param volume vector or xts, historical series of volume for each interval
 #' 
-#' @return A vector containing the ADL value
+#' @return vector or xts, historical series of ADL value
 #' 
 #' @export
 #' @importFrom zoo coredata index

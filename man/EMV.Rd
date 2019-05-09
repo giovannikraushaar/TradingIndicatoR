@@ -4,19 +4,19 @@
 \alias{EMV}
 \title{EMV}
 \usage{
-EMV(high, low, volume, divisor = 10000)
+EMV(low, high, volume, divisor = 10000)
 }
 \arguments{
-\item{high}{vector of high prices}
+\item{low}{vector or xts, historical series of the lowest prices for each interval}
 
-\item{low}{vector of low prices}
+\item{high}{vector or xts, historical series of the highest prices for each interval}
 
-\item{volume}{vector of volumes}
+\item{volume}{vector or xts, historical series of volume for each interval}
 
 \item{divisor}{integer that scales the result}
 }
 \value{
-A vector containing the EMV value
+vector or xts, historical series of EMV value
 }
 \description{
 Compute the Arms Ease of Movement
@@ -24,10 +24,10 @@ Compute the Arms Ease of Movement
 \examples{
 
 data(TWTR)
-EMV(TWTR$High, TWTR$Low, TWTR$Volume)
+EMV(TWTR$Low, TWTR$High, TWTR$Volume)
 
 data(BAC)
-EMV(BAC$High, BAC$Low, BAC$Volume)
+EMV(BAC$Low, BAC$High, BAC$Volume)
 
 }
 \references{

@@ -4,12 +4,12 @@
 #' 
 #' Compute the Average True Range Indicator
 #' 
-#' @param high vector of high prices
-#' @param low vector of low prices
-#' @param close vector of closing prices
+#' @param close vector or xts, historical series of the close price for each interval
+#' @param low vector or xts, historical series of the lowest prices for each interval 
+#' @param high vector or xts, historical series of the highest prices for each interval 
 #' @param n integer, length of each period of analysis
 #' 
-#' @return a vector containing the Average True Range values
+#' @return vector or xts, historical series of ATR value
 #' 
 #' @export
 #' @importFrom zoo coredata index
@@ -20,9 +20,9 @@
 #' @examples
 #' 
 #' data(BAC)
-#' ATR(BAC$High,BAC$Low,BAC$Close)
+#' ATR(BAC$Close,BAC$Low,BAC$High)
 #' 
-ATR <- function(high, low, close, n=14){
+ATR <- function(close, low, high, n=14){
   
   # Convert to numeric for easier calculations
   wasXts  <- F

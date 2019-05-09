@@ -4,10 +4,10 @@
 #' 
 #' Compute the normalized price
 #' 
-#' @param price vector of prices
+#' @param price vector or xts, historical series of prices
 #' @param scale integer, scale of the result
 #' 
-#' @return A vector containing the normalized prices to the inserted scale
+#' @return vector or xts, historical series of normalized prices to the inserted scale
 #' 
 #' @export
 #' @importFrom zoo coredata index

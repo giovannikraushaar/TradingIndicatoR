@@ -7,7 +7,7 @@
 MA(price, period, method = "SMA", weight = NULL, k = NULL)
 }
 \arguments{
-\item{price}{A vector of past prices or an xts object.}
+\item{price}{A vector of past prices or an equivalent xts object.}
 
 \item{period}{Integer or vector/list of integers. Number of datapoints over
 which calculate the average.}

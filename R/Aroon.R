@@ -4,10 +4,10 @@
 #' 
 #' Compute the Aroon indicator
 #' 
-#' @param price vector of prices
+#' @param price vector or xts, historical series of prices
 #' @param n integer, length of each period of analysis
 #' 
-#' @return A dataframe containing aroonUp and aroonDown values
+#' @return dataframe or xts, historical series of AroonUp and AroonDown values
 #' 
 #' @export
 #' @importFrom zoo coredata index

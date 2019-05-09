@@ -7,12 +7,12 @@
 NormPrice(price, scale = 100)
 }
 \arguments{
-\item{price}{vector of prices}
+\item{price}{vector or xts, historical series of prices}
 
 \item{scale}{integer, scale of the result}
 }
 \value{
-A vector containing the normalized prices to the inserted scale
+vector or xts, historical series of normalized prices to the inserted scale
 }
 \description{
 Compute the normalized price

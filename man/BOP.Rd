@@ -4,19 +4,19 @@
 \alias{BOP}
 \title{BOP}
 \usage{
-BOP(close, open, high, low)
+BOP(open, close, high, low)
 }
 \arguments{
-\item{close}{vector of closing prices}
+\item{open}{vector or xts, historical series of the open price for each interval}
 
-\item{open}{vector of opening prices}
+\item{close}{vector or xts, historical series of the close price for each interval}
 
-\item{high}{vector of high prices}
+\item{high}{vector or xts, historical series of the highest prices for each interval}
 
-\item{low}{vector of low prices}
+\item{low}{vector or xts, historical series of the lowest prices for each interval}
 }
 \value{
-A vector containing the BOP value
+vector or xts, historical series of BOP value
 }
 \description{
 Compute the Balance of Power Indicator
@@ -24,10 +24,10 @@ Compute the Balance of Power Indicator
 \examples{
 
 data(TWTR)
-BOP(TWTR$Close, TWTR$Open, TWTR$High, TWTR$Low)
+BOP(TWTR$Open, TWTR$Close, TWTR$High, TWTR$Low)
 
 data(BAC)
-BOP(BAC$Close, BAC$Open, BAC$High, BAC$Low)
+BOP(BAC$Open, BAC$Close, BAC$High, BAC$Low)
 
 }
 \references{

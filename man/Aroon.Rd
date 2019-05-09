@@ -7,12 +7,12 @@
 Aroon(price, n = 14)
 }
 \arguments{
-\item{price}{vector of prices}
+\item{price}{vector or xts, historical series of prices}
 
 \item{n}{integer, length of each period of analysis}
 }
 \value{
-A dataframe containing aroonUp and aroonDown values
+dataframe or xts, historical series of AroonUp and AroonDown values
 }
 \description{
 Compute the Aroon indicator

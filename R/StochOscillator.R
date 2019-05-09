@@ -4,13 +4,13 @@
 #' 
 #' Compute stochastic oscillator
 #' 
-#' @param close vector of closing prices
-#' @param high vector of high prices
-#' @param low vector of low prices
+#' @param close vector or xts, historical series of the close price for each interval
+#' @param low vector or xts, historical series of the lowest prices for each interval 
+#' @param high vector or xts, historical series of the highest prices for each interval 
 #' @param n integer, length of each period of analysis
 #' @param k integer, length of the smoothing factor
 #' 
-#' @return a vector or XTS containing the value of stochastic oscillator
+#' @return vector or xts, historical series of stochastic oscillator value
 #' 
 #' @export
 #' @importFrom zoo coredata index
@@ -21,9 +21,9 @@
 #' @examples
 #' 
 #' data(TWTR)
-#' StochOscillator(TWTR$Close,TWTR$High,TWTR$Low)
+#' StochOscillator(TWTR$Close,TWTR$Low,TWTR$High)
 #' data(BAC)
-#' StochOscillator(BAC$Close,BAC$High,BAC$Low)
+#' StochOscillator(BAC$Close,BAC$Low,BAC$High)
 #' 
 StochOscillator  <- function(close, high, low, n = 14, k = 3){
 

@@ -7,16 +7,16 @@
 ADL(close, low, high, volume)
 }
 \arguments{
-\item{close}{vector of closing prices}
+\item{close}{vector or xts, historical series of the close price for each interval}
 
-\item{low}{vector of low prices}
+\item{low}{vector or xts, historical series of the lowest prices for each interval}
 
-\item{high}{vector of high prices}
+\item{high}{vector or xts, historical series of the highest prices for each interval}
 
-\item{volume}{vector of volumes}
+\item{volume}{vector or xts, historical series of volume for each interval}
 }
 \value{
-A vector containing the ADL value
+vector or xts, historical series of ADL value
 }
 \description{
 Compute the Accumulation/Distribution Line Indicator

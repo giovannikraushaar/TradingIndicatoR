@@ -7,18 +7,18 @@
 StochOscillator(close, high, low, n = 14, k = 3)
 }
 \arguments{
-\item{close}{vector of closing prices}
+\item{close}{vector or xts, historical series of the close price for each interval}
 
-\item{high}{vector of high prices}
+\item{high}{vector or xts, historical series of the highest prices for each interval}
 
-\item{low}{vector of low prices}
+\item{low}{vector or xts, historical series of the lowest prices for each interval}
 
 \item{n}{integer, length of each period of analysis}
 
 \item{k}{integer, length of the smoothing factor}
 }
 \value{
-a vector or XTS containing the value of stochastic oscillator
+vector or xts, historical series of stochastic oscillator value
 }
 \description{
 Compute stochastic oscillator
@@ -26,9 +26,9 @@ Compute stochastic oscillator
 \examples{
 
 data(TWTR)
-StochOscillator(TWTR$Close,TWTR$High,TWTR$Low)
+StochOscillator(TWTR$Close,TWTR$Low,TWTR$High)
 data(BAC)
-StochOscillator(BAC$Close,BAC$High,BAC$Low)
+StochOscillator(BAC$Close,BAC$Low,BAC$High)
 
 }
 \references{

@@ -4,10 +4,10 @@
 #' 
 #' Compute the Aroon Oscillator Indicator
 #' 
-#' @param price vector of prices
+#' @param price vector or xts, historical series of prices
 #' @param n integer, length of each period of analysis
 #' 
-#' @return A vector containing aroonOscillator values
+#' @return vector or xts, historical series of Aroon Oscillator value
 #' 
 #' @export
 #' @author Paolo Montemurro <montep@usi.ch>

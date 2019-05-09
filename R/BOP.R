@@ -4,12 +4,12 @@
 #' 
 #' Compute the Balance of Power Indicator
 #' 
-#' @param close vector of closing prices
-#' @param open vector of opening prices
-#' @param low vector of low prices
-#' @param high vector of high prices
+#' @param open vector or xts, historical series of the open price for each interval
+#' @param close vector or xts, historical series of the close price for each interval
+#' @param low vector or xts, historical series of the lowest prices for each interval 
+#' @param high vector or xts, historical series of the highest prices for each interval 
 #' 
-#' @return A vector containing the BOP value
+#' @return vector or xts, historical series of BOP value
 #' 
 #' @export
 #' @importFrom zoo coredata index
@@ -19,12 +19,12 @@
 #' @examples 
 #' 
 #' data(TWTR)
-#' BOP(TWTR$Close, TWTR$Open, TWTR$High, TWTR$Low)
+#' BOP(TWTR$Open, TWTR$Close, TWTR$High, TWTR$Low)
 #' 
 #' data(BAC)
-#' BOP(BAC$Close, BAC$Open, BAC$High, BAC$Low)
+#' BOP(BAC$Open, BAC$Close, BAC$High, BAC$Low)
 #' 
-BOP <- function(close, open, high, low){
+BOP <- function(open, close, high, low){
   
   # Convert to numeric for easier calculations
   wasXts  <- F
