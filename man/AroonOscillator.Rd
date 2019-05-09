@@ -18,8 +18,10 @@ A vector containing aroonOscillator values
 Compute the Aroon Oscillator Indicator
 }
 \examples{
+
 p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
 AroonOscillator(p,5)
+
 }
 \references{
 Tushar Chande, 

@@ -15,10 +15,11 @@
 #' \emph{The New Technical Trader: Boost Your Profit by Plugging Into 
 #' the Latest Indicators}, 1994.
 #' @examples 
+#' 
 #' p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )
 #' AroonOscillator(p,5)
-
-AroonOscillator   <- function(price,n=14){
+#' 
+AroonOscillator   <- function(price, n = 14){
   
   # Convert to numeric for easier calculations
   wasXts  <- F

@@ -1,4 +1,4 @@
-# Luca Sanfilippo
+# Luca Sanfilippo, 2019-05-09
 
 test_that("Ichimoku works with simple input", {
   h <-c(20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28,20, 22,
@@ -7,10 +7,10 @@ test_that("Ichimoku works with simple input", {
   l <- c(10, 15, 30, 12, 14, 3, 20, 1, 8, 9, 3, 18, 7, 2, 1,20, 22, 24, 25,
          23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28,10,17,4,19, 25, 23, 26, 
          28, 26, 29, 27, 28, 30, 27, 29, 28,10,17,4,19,17,4)
-  c <- c(21,10,17,4,19,3,13,1,3,1,9,8,2,6,1,20, 22, 24, 25, 23, 26, 28, 26,
+  a <- c(21,10,17,4,19,3,13,1,3,1,9,8,2,6,1,20, 22, 24, 25, 23, 26, 28, 26,
          29, 27, 28, 30, 27, 29, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 
          28,10,17,4,19,17,4,19,17,4,2,1 )
-  expect_equal(as.integer(Ichimoku(h, l, c)[10, 4]), 18)
+  expect_equal(as.integer(Ichimoku(h, l, a)[10, 4]), 18)
 })
 
 test_that("First n-1 values are NA for each Ichimoku indicator", {
@@ -20,24 +20,24 @@ test_that("First n-1 values are NA for each Ichimoku indicator", {
   l <- c(10, 15, 30, 12, 14, 3, 20, 1, 8, 9, 3, 18, 7, 2, 1,20, 22, 24, 25,
          23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28,10,17,4,19, 25, 23, 26, 
          28, 26, 29, 27, 28, 30, 27, 29, 28,10,17,4,19,17,4)
-  c <- c(21,10,17,4,19,3,13,1,3,1,9,8,2,6,1,20, 22, 24, 25, 23, 26, 28, 26,
+  a <- c(21,10,17,4,19,3,13,1,3,1,9,8,2,6,1,20, 22, 24, 25, 23, 26, 28, 26,
          29, 27, 28, 30, 27, 29, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 
          28,10,17,4,19,17,4,19,17,4,2,1 )
   # TenkanSen
   n <- 9
-  x <- all(is.na(Ichimoku(h, l, c)[1:(n - 1), 4]))
+  x <- all(is.na(Ichimoku(h, l, a)[1:(n - 1), 4]))
   expect_equal(x, TRUE)
   # KijunSen
   n <- 26
-  x <- all(is.na(Ichimoku(h, l, c)[1:(n - 1), 5]))
+  x <- all(is.na(Ichimoku(h, l, a)[1:(n - 1), 5]))
   expect_equal(x, TRUE)
   # SenkouSpanA
   n <- 26
-  x <- all(is.na(Ichimoku(h, l, c)[1:(n - 1), 6]))
+  x <- all(is.na(Ichimoku(h, l, a)[1:(n - 1), 6]))
   expect_equal(x, TRUE)
   # SenkouSpanB
   n <- 52
-  x <- all(is.na(Ichimoku(h, l, c)[1:(n - 1), 7]))
+  x <- all(is.na(Ichimoku(h, l, a)[1:(n - 1), 7]))
   expect_equal(x, TRUE)
   
 })
@@ -49,10 +49,10 @@ test_that("input with a valid length", {
   l <- c(10, 15, 30, 12, 14, 3, 20, 1, 8, 18, 7, 2, 1,20, 22, 24, 25,
          23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28,10,17,4,19, 25, 23, 26, 
          28, 26, 29, 27, 28, 30, 27, 29, 28,10,17,4,19,17,4)
-  c <- c(21,10,17,4,19,3,13,1,3,1,9,8,2,6,1,20, 22, 24, 25, 23, 26, 28, 26,
+  a <- c(21,10,17,4,19,3,13,1,3,1,9,8,2,6,1,20, 22, 24, 25, 23, 26, 28, 26,
          29, 27, 28, 30, 27, 29, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 
          28,10,17,4,19,17,4)
-  expect_error(Ichimoku(h, l, c))
+  expect_error(Ichimoku(h, l, a))
 })
 
 test_that("xts input", {
@@ -64,5 +64,3 @@ test_that("quantmod output as input", {
   expect_length(Ichimoku(BAC$High, BAC$Low, BAC$Close)[, 1], nrow(BAC))
   expect_length(Ichimoku(BAC[, 2], BAC[, 3], BAC[, 4])[, 1] , nrow(BAC))
 })
-
-

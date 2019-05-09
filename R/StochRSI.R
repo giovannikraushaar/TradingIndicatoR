@@ -1,4 +1,4 @@
-# Luca Sanfilippo, 2019-04-24
+# Luca Sanfilippo, 2019-05-09
 
 #' Stochastic Relative Strenght Index 
 #' 
@@ -24,8 +24,9 @@
 #' data(BAC)
 #' rsi <- RSI(BAC$Close)
 #' StochRSI(rsi)
-#' 
+ 
 StochRSI <- function(rsi, period = 14) {
+  
   high     <- c(rep(NA, 2 * (period - 1)))
   low      <- c(rep(NA, 2 * (period - 1)))
   stochRSI <- c(rep(NA, 2 * (period - 1)))
@@ -45,7 +46,7 @@ StochRSI <- function(rsi, period = 14) {
   }
   
   # Code to verify the type of data: (vector, xts)
-  if (class(rsi) == c('numeric')) {
+  if (class(rsi) == c('numeric') && xts::is.xts(rsi) == F ) {
     dimension <- length(rsi)
     core <- rsi
     ind <- FALSE
@@ -74,8 +75,3 @@ StochRSI <- function(rsi, period = 14) {
   
   return(stochRSI)
 }
-
-
-
-
- 

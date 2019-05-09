@@ -24,7 +24,6 @@ Compute the Stochastic Relative Strenght Index indicator.
 data(BAC)
 rsi <- RSI(BAC$Close)
 StochRSI(rsi)
-
 }
 \references{
 Tushard Chande and Stanley Kroll, 

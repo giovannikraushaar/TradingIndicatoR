@@ -21,12 +21,10 @@ length of the input.
 Compute the Ichimoku Kinko Hyo indicator.
 }
 \examples{
-library(quantmod)
-getSymbols('AAPL',src = 'yahoo')
-high         <- AAPL$AAPL.High  
-low          <- AAPL$AAPL.Low
-closingPrice <- AAPL$AAPL.Close
+
+data(BAC)
 Ichimoku( BAC$High, BAC$Low, BAC$Close)
+
 }
 \references{
 Goichi Hosoda, 1930-69

@@ -1,4 +1,4 @@
-# Luca Sanfilippo and Giovanni Kraushaar, 2019-04-24
+# Luca Sanfilippo, 2019-05-09
 
 #' On Balance Volume 
 #' 
@@ -20,6 +20,7 @@
 #' obv <- OBV(BAC$Close, BAC$Volume)
 #' plot( obv, type = 'l')
 #' 
+
 OBV <- function (closingPrice, volume) {
   
   clsCP <- class(closingPrice)
@@ -39,7 +40,6 @@ OBV <- function (closingPrice, volume) {
     )
   }
   
-  
   # Code to verify the type of data: (vector, xts)
   if (clsCP == c('numeric') && clsVM == c('numeric')) {
     ind <- FALSE
@@ -47,33 +47,35 @@ OBV <- function (closingPrice, volume) {
     dimension <- length(closingPrice)
     coreP <- closingPrice
     coreV <- volume
+    
   } else if (xts::is.xts(closingPrice) && xts::is.xts(volume)) {
     ind <- TRUE
-    obv    <- xts::xts(order.by = zoo::index(closingPrice))
+    obv    <- xts::xts(order.by = index(closingPrice))
     dimension <- length(closingPrice[, 1])
     coreP <- coredata(closingPrice[, 1])
     coreV <- coredata(volume[, 1])
   }
   
-  
   # Code to compute the OBV
   for (i in 2:dimension) {
     obv[1]  <- 0
-    if (sum(coreP[i], -coreP[i - 1]) > 0) {
+    if (sum(coreP[i],-coreP[i - 1]) > 0) {
       obv[i] <- obv[i - 1] + coreV[i]
-    } else if (sum(coreP[i], - coreP[i - 1]) < 0) {
+    } else if (sum(coreP[i],-coreP[i - 1]) < 0) {
       obv[i] <- obv[i - 1] - coreV[i]
     } else{
       obv[i] <- obv[i - 1]
     }
   }
   
-  if (ind) {
-    obv <- xts::xts(obv, order.by = index(closingPrice))
+  if (ind ) {
+    obv <- xts::xts(obv[,1], order.by = index(closingPrice[, ]))
     obv[1] <- NA
-  }else{
+  } else{
     obv[1] <- NA
   }
   
   return(obv)
 }
+
+

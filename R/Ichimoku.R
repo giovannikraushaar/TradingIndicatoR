@@ -1,4 +1,4 @@
-# Luca Sanfilippo, 2019-04-24
+# Luca Sanfilippo, 2019-05-09
 
 #' Ichimoku Kinko Hyo 
 #' 
@@ -22,7 +22,9 @@
 #' data(BAC)
 #' Ichimoku( BAC$High, BAC$Low, BAC$Close)
 #' 
+
 Ichimoku <- function (high, low, closingPrice) {
+  
   TenkanSen   <- c(rep(NA, 8))
   KijunSen    <- c(rep(NA, 25))
   SenkouSpanA <- c(rep(NA, 25))
@@ -31,9 +33,11 @@ Ichimoku <- function (high, low, closingPrice) {
   clsHigh <- class(high)
   clsLow <- class(low)
   clsCP <- class(closingPrice)
+  h <- length(high) 
+  l <- length(low)
+  a <- length(closingPrice)
   
-
-  if ( (length(high) != length(low)) | (length(low) != length(closingPrice)) ){
+  if (all(sapply(c(h,l), identical, a)) != T ){
     stop(
       paste0(
         'Cannot compute the require Ichimoku with different length inputs \n',
@@ -48,16 +52,6 @@ Ichimoku <- function (high, low, closingPrice) {
       )
     )
   }
-  
-  
-  # if (length(high) == length(low)) {
-  #   if (length(low) == length(closingPrice)) {
-  #     
-  #   } else
-  #     (stop(mess))
-  # } else{
-  #   stop(mess)
-  # } OMMIODDIO NOOOOO
   
   # Code to verify the type of data: (vector, xts)
   if (clsHigh == c('numeric') &&
@@ -148,7 +142,3 @@ Ichimoku <- function (high, low, closingPrice) {
   }
   return(results)
 }
-
-
-
-
