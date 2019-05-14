@@ -6,7 +6,8 @@ At the moment it is only possible to install from source. The most straight forw
 
 ```r
 install.packages("devtools")
-devtools::install_github("giovannikraushaar/TradingIndicatoR")
+install.packages(c("knitr", "quantmod"))  # required for building vignettes
+devtools::install_github('giovannikraushaar/TradingIndicatoR', build_opts = '--no-resave-data')
 ```
 
 ## Overview
