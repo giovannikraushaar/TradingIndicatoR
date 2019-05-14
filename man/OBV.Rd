@@ -25,7 +25,7 @@ plot( obv, type = 'l')
 
 }
 \references{
-Joe Granville, \emph{New Key To Stock Market Profits}, 1963.
+Granville Joe (1963), \emph{New Key To Stock Market Profits}.
 }
 \author{
 Luca Sanfilippo <luca.sanfilippo@usi.ch>

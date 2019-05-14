@@ -28,8 +28,8 @@ ATR(BAC$Close,BAC$Low,BAC$High)
 
 }
 \references{
-J. Welles Wilder, 
-\emph{New Concepts in Technical Analysis Systems}, 1974.
+Wilder J. Welles (1974), 
+\emph{New Concepts in Technical Analysis Systems}.
 }
 \author{
 Paolo Montemurro <montep@usi.ch>

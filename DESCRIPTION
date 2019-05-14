@@ -1,8 +1,8 @@
 Package: TradingIndicatoR
 Type: Package
 Title: Technical trading with TradingIndicatoR
-Version: 0.5
-Date: 2019-04-12
+Version: 1.0
+Date: 2019-05-15
 Author: Giovanni Kraushaar, Paolo Montemurro, Luca Sanfilippo
 Maintainer: Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
 Description: An R package that computes some of the most known financial indicators in technical trading. Developed as a small project for the course "Programming in Finance" at Università della Svizzera Italiana.
@@ -18,6 +18,7 @@ Suggests:
     rmarkdown,
     timeSeries,
     tseries,
+    quantmod,
     testthat (>= 2.1.0)
 VignetteBuilder: knitr
 URL: http://github.com/giovannikraushaar/TradingIndicatoR

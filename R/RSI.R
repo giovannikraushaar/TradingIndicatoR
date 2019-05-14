@@ -13,8 +13,8 @@
 #' 
 #' @export
 #' @author Luca Sanfilippo <luca.sanfilippo@usi.ch>
-#' @references Welles Wilder,
-#' \emph{New Concepts in Technical Trading Systems}, 1978.
+#' @references Wilder J. Welles (1974), 
+#' \emph{New Concepts in Technical Analysis Systems}.
 #' @examples
 #' 
 #' data(BAC)

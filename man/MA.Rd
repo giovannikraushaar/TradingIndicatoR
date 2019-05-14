@@ -53,9 +53,9 @@ MA( BAC$Close, 50, method = 'EMA' )
 
 }
 \references{
-Murphy John J.,
+Murphy John J. (1999),
 \emph{Technical Analysis of the Financial Markets},
-New York Institute of Finance, 1999.
+New York Institute of Finance.
 }
 \author{
 Giovanni Kraushaar <giovanni.kraushaar@usi.ch>

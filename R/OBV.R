@@ -14,7 +14,7 @@
 #' @importFrom xts xts is.xts
 #' @importFrom zoo coredata index
 #' @author Luca Sanfilippo <luca.sanfilippo@usi.ch>
-#' @references Joe Granville, \emph{New Key To Stock Market Profits}, 1963.
+#' @references Granville Joe (1963), \emph{New Key To Stock Market Profits}.
 #' @examples
 #' 
 #' obv <- OBV(BAC$Close, BAC$Volume)

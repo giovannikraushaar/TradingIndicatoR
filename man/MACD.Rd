@@ -40,9 +40,9 @@ MACD( BAC$Close )
 
 }
 \references{
-Murphy John J.,
+Murphy John J. (1999),
 \emph{Technical Analysis of the Financial Markets},
-New York Institute of Finance, 1999.
+New York Institute of Finance.
 }
 \seealso{
 Moving average: \code{\link{MA}}.

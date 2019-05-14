@@ -15,8 +15,8 @@
 #' @importFrom zoo coredata index
 #' @importFrom xts xts is.xts
 #' @author Paolo Montemurro <montep@usi.ch>
-#' @references J. Welles Wilder, 
-#' \emph{New Concepts in Technical Analysis Systems}, 1974.
+#' @references Wilder J. Welles (1974), 
+#' \emph{New Concepts in Technical Analysis Systems}.
 #' @examples
 #' 
 #' data(BAC)

@@ -22,9 +22,9 @@
 #' \code{signal}, or a multiple timeseries if it is an xts.
 #' @seealso Moving average: \code{\link{MA}}.
 #' @author Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
-#' @references Murphy John J.,
+#' @references Murphy John J. (1999),
 #' \emph{Technical Analysis of the Financial Markets},
-#' New York Institute of Finance, 1999.
+#' New York Institute of Finance.
 # #' @importFrom xts xts is.xts merge.xts
 #' @export
 #' 

@@ -31,9 +31,10 @@ ADL(BAC$Close, BAC$Low, BAC$High, BAC$Volume)
 
 }
 \references{
-Tom Taulli, 
-\emph{The streetsmart guide to short selling: techniques the pros use 
-to profit in any market. McGraw-Hill Professional. p. 190.} 2002.
+Taulli Tom (2002), 
+\emph{The streetsmart guide to short selling: 
+techniques the pros use to profit in any market}. 
+McGraw-Hill Professional. p. 190.
 }
 \author{
 Paolo Montemurro <montep@usi.ch>

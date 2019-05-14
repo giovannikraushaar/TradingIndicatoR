@@ -33,7 +33,7 @@ StochOscillator(BAC$Close,BAC$Low,BAC$High)
 }
 \references{
 George C. Lane, 
-\emph{John J. Murphy, Technical Analysis of the Financial Markets}, 1950.
+\emph{}, 1950.
 }
 \author{
 Paolo Montemurro <montep@usi.ch>

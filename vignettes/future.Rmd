@@ -1,0 +1,36 @@
+---
+title: "Concerning the genesis and the evolution of this package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Concerning the genesis and the evolution of this package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Difficulties Encountered
+
+#### Development of the functions
+During the development of the package we had to win the battle against several complications. First of all, we developed many function and we tried to give to all of them the same structure of inputs and outputs, and a similar style/description of the parameters. In addition, is not infrequent that while developing a new function we have to call an already existing function: during these situation we reallly had to be sure that the outputs were perfectly standardized. Then, some technical indicators are defined in different ways in different sources, and we had to choose the formula that returns the most correct output compared to the industry standard.
+
+#### Collaborating on GitHub
+
+Collaboration on GitHub is not easy for new comers. First of all we had to get used to the idea that each of us had a pesonal repository and for taking part in the project any other member of the group had to fork the original repository. Second, from that moment on all the repository were completly independent one another, therefore not only forked repository had to pull the changes they've made to the original repo, but also forked repository had to make and acept pull request from the original in order to keep up to date with it. Chances are that a collaborator misses a series of updates that make him work with functions that have been updated at the point that the outputs are not the ones he was expecting anymore.
+
+Personal comment (G.Kraushaar): According to me GitHub is more suitable for collaboration in other slightly different contexts. For instance when a developer wants to takeover a project from where the original creator left it, or even more importantly when there is an already stable project and an somebody wants to propose a marginal change to a specific part. Lastly if many developers want to improve different areas of an already consolidate project. At the beginning of a project, like in our case, it might be better to opt for a more strict way of collaborating, that forces each member to be more aware of the change going on.  
+
+
+## Results of the project
+
+The project counts 17 exported functions each of which with a dedicated documentation, 3 datasets, 3 vignettes, several tests. With some effort, the package passed all the checks and all the tests.
+
+
+## Future development of the project
+
+The first aim for expanding this package is for sure include more indicators. Beside this, however, it could be interesting to differenciate from our greatest competitor [TTR](https://cran.r-project.org/web/packages/TTR/index.html), by making [tsibble](https://tsibble.tidyverts.org) our default time series format, instead of xts.

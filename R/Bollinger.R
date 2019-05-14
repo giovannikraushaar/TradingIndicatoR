@@ -15,9 +15,9 @@
 #' are multivalued then a list contained the output described above for each
 #' value.
 #' @author Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
-#' @references Murphy John J.,
+#' @references Murphy John J. (1999),
 #' \emph{Technical Analysis of the Financial Markets},
-#' New York Institute of Finance, 1999.
+#' New York Institute of Finance.
 #' @seealso Moving Average function: \code{\link{MA}}.
 #' @export
 #' @importFrom stats sd

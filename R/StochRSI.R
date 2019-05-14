@@ -16,8 +16,8 @@
 #' @importFrom zoo coredata index
 #' 
 #' @author Luca Sanfilippo <luca.sanfilippo@usi.ch>
-#' @references Tushard Chande and Stanley Kroll, 
-#' \emph{The New Technical Trader}, 1994.
+#' @references Chande Tushard  and Kroll Stanley (1994), 
+#' \emph{The New Technical Trader}.
 #' 
 #' @examples
 #' 

@@ -1,0 +1,344 @@
+---
+title: "A sample workflow using TradingIndicatoR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Sample workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+## Introduction
+First of all load the package. Since we are using data in xts it is better to load zoo and xts as well.
+
+```{r package, include=FALSE}
+library(TradingIndicatoR)
+library(zoo)
+library(xts)
+```
+
+
+Next we download some historical prices from yahoo finance. For our example we chose APPLE, IBM, MICROSOFT, NIKE AND JPMORGAN in XTS format. TradingIndicatoR is coded up in order to deal both with XTS, and non-XTS input, but for completeness we use XTS during in these examples.
+
+```{r data, message=FALSE, warning=FALSE, results="hide"}
+quantmod::getSymbols(c("AAPL", "IBM", "MSFT", "NKE", "JPM", "ETHUSD=X"))
+ETH <-`ETHUSD=X`[(length(`ETHUSD=X`$`ETHUSD=X.Open`) - 150):length(`ETHUSD=X`$`ETHUSD=X.Open`),]
+```
+
+
+## Moving Averages
+The first indicator that we compute is a moving average. MA is a widely used indicator in technical analysis that helps smooth out price action by filtering out the "noise" from random short-term price fluctuations. It is a trend-following, or lagging, indicator because it is based on past prices. <br> 
+We apply the simple and exponential method to the AAPL daily prices from 2007 to 2019, with common used lagging period of 50 and 200.
+
+```{r SMA, results="hide" }
+sma <- MA(AAPL$AAPL.Close,
+          period = c(50, 200),
+          method = "SMA")
+```
+
+```{r plotSMA, echo=FALSE, fig.width=6, fig.height=4, fig.align="center"}
+invisible(plot.zoo(
+  AAPL$AAPL.Close,
+  main = "AAPL",
+  xlab = "Date",
+  ylab = "Price"
+))
+invisible(lines(as.zoo(sma$MA50), col = "red"))
+lines(as.zoo(sma$MA200), col = "blue")
+grid (10, 10, col = "grey", lty = 1)
+legend(
+  "topleft",
+  inset = .03,
+  c("AAPL", "SMA50", "SMA200"),
+  col = c("black", "red", "blue"),
+  horiz = FALSE,
+  lty = 1,
+  cex = 0.75
+)
+
+```
+
+```{r EMA}
+ema  <-  MA(AAPL$AAPL.Close,
+     period = c(50, 200),
+     method = "EMA") 
+```
+
+```{r plotEMA, echo=FALSE, fig.width=6, fig.height=4, fig.align="center"}
+invisible(plot.zoo(
+  AAPL$AAPL.Close,
+  main = "AAPL",
+  xlab = "Date",
+  ylab = "Price"
+))
+
+invisible(lines(as.zoo(ema$EMA50), col = "red"))
+lines(as.zoo(ema$EMA200), col = "blue")
+grid (10, 10, col = "grey", lty = 1)
+legend(
+  "topleft",
+  inset = .03,
+  c("AAPL", "EMA50", "EMA200"),
+  col = c("black", "red", "blue"),
+  horiz = FALSE,
+  lty = 1,
+  cex = 0.75
+)
+```
+
+As we can see, the difference between SMA and EMA is little: EMA is just slighty more reactive to price changes with respect to EMA.
+Thanks to the usage of those moving average, we clearly identify uptrends and downtrends, by checking the golden crosses (MA50 crosses the MA200 upwards) and deathcrosses (opposite cross).
+
+
+## Normalize Price
+
+If you'd have to compare the behaviour of different stocks numerically and graphically, you should convert them to a standardized price scale. <br> 
+In this case we compare four stocks with a starting price of 100.
+
+```{r Normalize_Price}
+scaledIBM  <- NormPrice(IBM$IBM.Adjusted)
+scaledMSFT <- NormPrice(MSFT$MSFT.Adjusted)
+scaledNKE  <- NormPrice(NKE$NKE.Adjusted)
+scaledJPM  <- NormPrice(JPM$JPM.Adjusted)
+
+priceMax <- max(scaledIBM, scaledMSFT, scaledNKE, scaledJPM)
+```
+
+```{r plotNormalizePrice, echo=FALSE, fig.width=6, fig.height=4, fig.align="center"}
+invisible(plot(
+  scaledIBM,
+  ylim = c(0, priceMax),
+  lwd = 1,
+  main = "Compare"
+))
+invisible(lines(scaledMSFT, col = "blue"))
+invisible(lines(scaledNKE, col = "red"))
+invisible(lines(scaledJPM, col = "green"))
+xts::addLegend(
+  "topleft",
+  legend.names = c("IBM", "MSFT", "NKE", "JPM"),
+  lty = c(1, 1),
+  lwd = c(2, 1),
+  col = c("black", "blue", "red", "green"),
+  cex = 0.75
+)
+```
+
+in our example we can see that the stock that suffered the most in 2008 was JPM, and the two best performing stocks since then were NKE and MSFT. If you'd invested 100$ in NKE in 2007 you'd have received 1200$ back!
+
+
+
+## Moving average convergence divergence: MACD
+
+Moving Average Convergence Divergence (MACD) is a trend-following momentum indicator that shows the relationship between two moving averages of a security's price. The MACD is calculated by subtracting the 26-period Exponential Moving Average (EMA) from the 12-period EMA. <br> 
+We calculated the MACD for Nike and plotted it below the prices.
+
+```{r MACD}
+macdNKE <-  MACD(
+    price = (NKE$NKE.Close) ,
+    period = c(12, 26),
+    signal_line = T
+  )  
+```
+
+```{r plotMACD, echo=FALSE, fig.width=6, fig.height=7, fig.align="center"}
+lay <- rbind(c(1, 1), c(1, 1), c(2, 2))
+layout(lay)
+plot.zoo(NKE$NKE.Close,
+         main = "NKE",
+         xlab = "Date",
+         ylab = "Price")
+grid (10, 10, col = "grey", lty = 1)
+
+invisible(plot.zoo(
+  macdNKE$MACD,
+  main = "macdNKE",
+  xlab = "Date",
+  ylab = "value macd"
+))
+
+lines(as.zoo(macdNKE$`Signal Line`), col = "red")
+grid (10, 10, col = "grey", lty = 1)
+legend(
+  "topright",
+  inset = .01,
+  c("macdNKE", "Signal Line"),
+  col = c("black", "red"),
+  horiz = FALSE,
+  lty = 1,
+  cex = 0.75
+)
+```
+
+We can see from the above graph that spotting the points where MACD is really high or low, we can identify some point of maximum/minimum of the price. Unfortunately with this 12 years of observation, we can't appreciate the signal-line behavior from the plot
+
+
+## Relative strength index: RSI
+The relative strength index (RSI) is a momentum indicator that measures the magnitude of recent price changes to evaluate overbought or oversold conditions in the price of a stock or other asset. The RSI is displayed as an oscillator (a line graph that moves between two extremes) and can have a reading from 0 to 100. 
+
+```{r RSI}
+rsiJPM     <- RSI(JPM$JPM.Close,period=14)
+```
+```{r plotRSI, echo=FALSE, fig.width=6, fig.height=7, fig.align="center"}
+lay <- rbind(c(1, 1), c(1, 1), c(2, 2))
+layout(lay)
+plot.zoo(JPM$JPM.Close,
+         main = "JPM",
+         xlab = "Date",
+         ylab = "Price")
+grid (10, 10, col = "grey", lty = 1)
+
+plot.zoo(rsiJPM,
+         main = "rsiJPM",
+         xlab = "Date",
+         ylab = "value")
+grid (10, 10, col = "grey", lty = 1)
+```
+
+During an uptrend, you should tecnically place your buy order when the RSI in the oversold zone (value RSI < 30), and start selling in the overbought area (value RSI > 70). <br>
+Observing the plot, we can see that the RSI correctly identified some minimums, but doesn't have absolute precision.
+
+
+
+## Aroon - AroonOscillator
+The Aroon indicator is a technical indicator that is used to identify trend changes in the price of an asset, as well as the strength of that trend. In essence, the indicator measures the time between highs and the time between lows over a time period. The idea is that strong uptrends will regularly see new highs, and strong downtrends will regularly see new lows. <br>
+The indicator signals when this is happening, and when it isn't.
+
+```{r AroonMSFT}
+aroonMSFT <- Aroon(price = MSFT$MSFT.Close, n = 50)
+```
+
+```{r plotAroonMSFT, echo=FALSE, fig.width=6, fig.height=7, fig.align="center"}
+lay <- rbind(c(1, 1), c(1, 1), c(2, 2), c(3, 3))
+layout(lay)
+plot.zoo(MSFT$MSFT.Close,
+         main = "MSFT",
+         xlab = "Date",
+         ylab = "price")
+grid (10, 10, col = "grey", lty = 1)
+
+plot.zoo(
+  aroonMSFT$AroonUP,
+  col = "green",
+  main = "AroonUP MSFT",
+  xlab = "Date",
+  ylab = "value"
+)
+grid (10, 10, col = "grey", lty = 1)
+
+plot.zoo(
+  aroonMSFT$AroonDOWN,
+  col = "red",
+  main = "AroonDOWN MSFT",
+  xlab = "Date",
+  ylab = "value"
+)
+grid (10, 10, col = "grey", lty = 1)
+```
+
+Looking at the graph, we can't easily understand what is going on. That's the problem of Aroon in long timeframes: it can be confusing. That's why Tushar Chande, the author, created the Aroon Oscillator.
+
+```{r AroonOscMSFT}
+aroonOscMSFT <- AroonOscillator(price = MSFT$MSFT.Close, n = 50)
+```
+
+```{r plotAroon,echo=FALSE, fig.width=6, fig.height=7, fig.align="center"}
+lay <- rbind(c(1, 1), c(1, 1), c(2, 2))
+layout(lay)
+plot.zoo(MSFT$MSFT.Close,
+         main = "MSFT",
+         xlab = "Date",
+         ylab = "price")
+grid (10, 10, col = "grey", lty = 1)
+
+plot.zoo(aroonOscMSFT,
+         main = "OscMSFT",
+         xlab = "Date",
+         ylab = "value")
+grid (10, 10, col = "grey", lty = 1)
+```
+
+Now the situation is clearer. <br>
+The aroon Oscillator ranges from -100 to 100 and combines together aroonUp and aroonDown: a stable value above 0 indicates a bullish trend, while a value < 0 indicates a downtrend, as you can see from the graph.
+
+
+## Stochastic oscillator
+A stochastic oscillator is a momentum indicator comparing a particular closing price of a security to a range of its prices over a certain period of time. The sensitivity of the oscillator to market movements is reducible by adjusting that time period or by taking a moving average of the result. It is used to generate overbought and oversold trading signals, utilizing a 0-100 bounded range of values.
+
+```{r Stochastic_oscillator}
+lastYearIBM <-  IBM[(length(IBM$IBM.Open) - 252):length(IBM$IBM.Open),]
+stochOscIBM <-  StochOscillator(lastYearIBM$IBM.Close,
+                  lastYearIBM$IBM.Low,
+                  lastYearIBM$IBM.High,
+                  n = 14)
+```
+
+```{r plotStoch, echo=FALSE, fig.width=6, fig.height=5, fig.align="center"}
+lay <- rbind(c(1, 1), c(1, 1), c(2, 2))
+layout(lay)
+plot(
+  lastYearIBM$IBM.Close,
+  main = "IBM",
+  xlab = "Date",
+  ylab = "price"
+)
+
+plot(stochOscIBM$MA,
+     main = "stochOscIBM",
+     xlab = "Date",
+     ylab = "value")
+```
+
+It seems like that this indicator by its own, is not able to predict top and bottoms, but it should combined with others.
+
+
+## Bollinger Bands
+A Bollinger Band is a technical analysis tool defined by a set of lines plotted two standard deviations (positively and negatively) away from a simple moving average (SMA) of the security's price, but can be adjusted to user preferences. <br>
+Bollinger Bands were developed and copyrighted by famous technical trader John Bollinger.
+```{r bollingerETH}
+bollingerETH <- Bollinger(ETH$`ETHUSD=X.Close`)
+```
+
+```{r plotBolinger, echo=FALSE, fig.width=6, fig.height=4, fig.align="center"}
+par(mfrow = c(1, 1))
+rangeETH <-
+  c(min(bollingerETH, na.rm = T), max(bollingerETH, na.rm = T))
+invisible(plot(
+  ETH$`ETHUSD=X.Close`,
+  ylim = rangeETH,
+  main = "ETH",
+  xlab = "Date",
+  ylab = "price"
+))
+invisible(lines(bollingerETH$UpperBB, col = "red", lwd = 3))
+invisible(lines(bollingerETH$LowerBB, col = "green", lwd = 3))
+invisible(lines(bollingerETH$MA, col = "blue"))
+
+xts::addLegend(
+  "topright",
+  inset = .01,
+  c("ETH", "UpperBB", "LowerBB", "ETH MA"),
+  col = c("black", "red", "green", "blue"),
+  horiz = FALSE,
+  lty = 1,
+  cex = 0.75
+)
+```
+
+The purpose of Bollinger Bands is to provide a relative definition of high and low prices of a market. By definition, you should sell when the price breaks the above red band, and buy when the price is below the red band below.
+You should then close the position then the price reaches the central moving average (blue).
+As you can see, this technique worked quite well for ethereum in the last 150 days.
+
+
+## Conclusion
+Inside TradingIndicatoR you can find many other technical indicators, like ADL, Ichimoku, ATR, OBV, Stochastic RSI, BOP, and EMV. They are not mentioned in this short workflow to avoid redundance.<br>
+If you want to know more, try each function yourself!
+<br>

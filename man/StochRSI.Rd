@@ -26,8 +26,8 @@ rsi <- RSI(BAC$Close)
 StochRSI(rsi)
 }
 \references{
-Tushard Chande and Stanley Kroll, 
-\emph{The New Technical Trader}, 1994.
+Chande Tushard  and Kroll Stanley (1994), 
+\emph{The New Technical Trader}.
 }
 \author{
 Luca Sanfilippo <luca.sanfilippo@usi.ch>

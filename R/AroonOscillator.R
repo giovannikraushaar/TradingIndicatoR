@@ -11,9 +11,8 @@
 #' 
 #' @export
 #' @author Paolo Montemurro <montep@usi.ch>
-#' @references Tushar Chande, 
-#' \emph{The New Technical Trader: Boost Your Profit by Plugging Into 
-#' the Latest Indicators}, 1994.
+#' @references Chande Tushar (1994), \emph{The New Technical Trader: 
+#' Boost Your Profit by Plugging Into the Latest Indicators}.
 #' @examples 
 #' 
 #' p <- c( 20, 22, 24, 25, 23, 26, 28, 26, 29, 27, 28, 30, 27, 29, 28 )

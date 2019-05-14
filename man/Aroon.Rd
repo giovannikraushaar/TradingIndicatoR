@@ -24,9 +24,9 @@ Aroon(TWTR$Close, 5)
 
 }
 \references{
-Tushar Chande, 
-\emph{The New Technical Trader: Boost Your Profit by Plugging 
-Into the Latest Indicators}, 1994.
+Chande Tushar (1994), 
+\emph{The New Technical Trader: 
+Boost Your Profit by Plugging Into the Latest Indicators}.
 }
 \author{
 Paolo Montemurro <montep@usi.ch>

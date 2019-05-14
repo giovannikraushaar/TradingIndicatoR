@@ -20,9 +20,9 @@
 #' accordingly to the input, of the same length of the input. 
 #' The first period-1 values are NA.
 #' @author Giovanni Kraushaar <giovanni.kraushaar@usi.ch>
-#' @references Murphy John J.,
+#' @references Murphy John J. (1999),
 #' \emph{Technical Analysis of the Financial Markets},
-#' New York Institute of Finance, 1999.
+#' New York Institute of Finance.
 #' @details 
 #' The weighted moving average method (WMA) is a bit trickier to handle because
 #' it requires an input (weight) that is functional of the value an other 

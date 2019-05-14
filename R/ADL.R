@@ -15,9 +15,10 @@
 #' @importFrom zoo coredata index
 #' @importFrom xts xts is.xts
 #' @author Paolo Montemurro <montep@usi.ch>
-#' @references Tom Taulli, 
-#' \emph{The streetsmart guide to short selling: techniques the pros use 
-#' to profit in any market. McGraw-Hill Professional. p. 190.} 2002.
+#' @references Taulli Tom (2002), 
+#' \emph{The streetsmart guide to short selling: 
+#' techniques the pros use to profit in any market}. 
+#' McGraw-Hill Professional. p. 190.
 #' @examples 
 #' 
 #' data(TWTR)

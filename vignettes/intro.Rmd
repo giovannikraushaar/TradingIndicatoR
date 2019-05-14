@@ -1,0 +1,67 @@
+---
+title: "Introduction to TradingIndicatoR"
+author: "Giovanni Kraushaar, Paolo Montemurro, Luca Sanfilippo"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to TradingIndicatoR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+`TradingIndicatoR` is an R package that computes some of the most known financial indicators (or technical trading indicators) in technical trading, based on past price levels and other historical data. All functions are designed to be compatible with regular vector or object of class [xts](https://cran.r-project.org/web/packages/xts/index.html).
+
+Currently `TradingIndicatoR` offers the following indicators:
+
+|Indicator|Function|
+|:--------|:-------|
+|Accumulation/Distribution Line|`ADL()`|
+|Aroon|`Aroon()`|
+|Aroon Oscillator|`AroonOscillator()`|
+|Average True Range|`ATR()`|
+|Bollinger Bands|`Bollinger()`|
+|Balance of Power|`BOP()`|
+|Exponential Moving Average|`MA()`|
+|Arms Ease of Movement|`EVM()`|
+|Ichimoku Kinko Hyo|`Ichimoku()`|
+|Moving Average Convergence Divergence|`MACD()`|
+|On Balance Volume|`OBV()`|
+|Relative Strenght Index|`RSI()`|
+|Simple Moving Average|`MA()`|
+|Stochastic Oscillator|`StochOscillator()`|
+|Stochastic RSI|`StochRSI()`|
+|Weighted Moving Average|`MA()`|
+
+
+Moreover the package offers some utilities such as `NormPrice()` function for normalizing prices and some sample datasets to experiment with. These are `TWTR`, `USGDP` and `BAC`.
+
+
+We provide a [sample workflow](workflow.html) will introduce you to the package through a realistic simple analysis. 
+
+Since this was a school project, if you want to know more about the difficulties encountered during the early development of the package, or the future developments we are considering for it follow this [link](future.html).
+
+# About
+
+The package's source files are hosted on [GitHub](https://github.com/giovannikraushaar/TradingIndicatoR). It was developed by Kraushaar Giovanni, Montemurro Paolo and Sanfilippo Luca, for course  "Programming in Finance" at Università della Svizzera Italiana held by Dr. Peter Gruber.
+
+
+### References
+* Arms, Richard W. Jr. (1971), *Profits In Volume: Equivolume Charting*.
+* Chande, Tushard  and Kroll, Stanley (1994), *The New Technical Trader*.
+* Granville, Joe (1963), *New Key To Stock Market Profits*.
+* Murphy John J. (1999), *Technical Analysis of the Financial Markets*, New York Institute of Finance.
+* Pring, Martin J. (1995), *Analisi tecnica dei mercati finanziari*, McGraw-Hill.
+* Taulli, Tom (2002), *The streetsmart guide to short selling: techniques the pros use to profit in any market*. McGraw-Hill Professional. p. 190.
+* Ryan, Jeffrey A. and Ulrich, Joshua M. (2018). *xts: eXtensible Time Series*. R package version 0.11-2.
+* Wickham, Hadley (2014), *Advanced R*, Routledge
+* Wickham, Hadley (2015), *R Packages: Organize, Test, Document, and Share Your Code*, O'Reilly Media
+* Wilder, J. Welles (1974), *New Concepts in Technical Analysis Systems*.
+* Zeileis, Achim and Grothendieck, Gabor (2005). *zoo: S3 Infrastructure for Regular and Irregular Time Series*. Journal of Statistical Software, 14(6), 1-27. doi:10.18637/jss.v014.i06

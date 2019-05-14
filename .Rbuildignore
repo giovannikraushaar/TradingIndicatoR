@@ -8,3 +8,5 @@
 ^LICENSE$
 ^resources$
 ^data/TWTR\.csv$
+^doc$
+^Meta$

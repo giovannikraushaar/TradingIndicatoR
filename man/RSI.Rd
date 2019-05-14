@@ -26,8 +26,8 @@ RSI(BAC$Close)
 
 }
 \references{
-Welles Wilder,
-\emph{New Concepts in Technical Trading Systems}, 1978.
+Wilder J. Welles (1974), 
+\emph{New Concepts in Technical Analysis Systems}.
 }
 \author{
 Luca Sanfilippo <luca.sanfilippo@usi.ch>
